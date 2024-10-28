@@ -1,5 +1,3 @@
-// testing git
-
 const app = require('../app');
 const debug = require('debug')('express-react-app:server');
 const http = require('http');
