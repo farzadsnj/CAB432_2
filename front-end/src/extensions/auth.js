@@ -12,9 +12,16 @@ export const getToken = () => {
 };
 
 export const getRole = () => {
-    const roles = localStorage.getItem('role');
-    return roles ? JSON.parse(roles) : [];
+    try {
+        const roles = localStorage.getItem('role');
+        return roles ? JSON.parse(roles) : [];
+
+    } catch (error) {
+        console.error("No Item Found:", error);
+        return [];
+    }
 };
+
 export const removeToken = () => {
     localStorage.removeItem('token');
     localStorage.removeItem('role');
