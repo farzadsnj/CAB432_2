@@ -5,6 +5,9 @@ const http = require('http');
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
+const statusRouter = require('../api-service/routes/status');
+app.use('/api', statusRouter);
+
 const server = http.createServer(app);
 
 server.listen(port);

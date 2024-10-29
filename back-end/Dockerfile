@@ -1,24 +1,19 @@
-# backend/Dockerfile
-
-# Use Node.js base image
-#FROM node:18
+# Use a lightweight Node.js image
 FROM node:18-alpine
 
-# Set the working directory
+# Set working directory
 WORKDIR /app
 
-
-# Copy only package.json and package-lock.json first
+# Copy package files for dependency installation
 COPY package.json package-lock.json ./
 
-# Install only production dependencies
+# Install dependencies
 RUN npm install --production
 
-
-# Copy the rest of the app
+# Copy the entire app into the container
 COPY . .
 
-# Expose the port the app runs on
+# Expose the port the app will run on
 EXPOSE 3000
 
 # Start the app
