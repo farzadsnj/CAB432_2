@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const videoController = require('../api-service/controllers/videoController');
+const videoController = require('../controllers/videoController');
 const multer = require('multer');
 const path = require('path');
 
