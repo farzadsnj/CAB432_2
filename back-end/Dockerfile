@@ -1,20 +1,21 @@
 # Use a lightweight Node.js image
 FROM node:18-alpine
 
-# Set working directory
-WORKDIR /app
+# Set the working directory inside the container
+WORKDIR /back-end
 
-# Copy package files for dependency installation
-COPY package.json package-lock.json ./
+# Install necessary system dependencies
+RUN apk add --no-cache bash nodejs npm supervisor
 
-# Install dependencies
-RUN npm install --production
-
-# Copy the entire app into the container
+# Copy project files into the container
 COPY . .
 
-# Expose the port the app will run on
-EXPOSE 3000
+# Install dependencies for both services
+RUN cd /back-end/api-service && npm install --production
+RUN cd /back-end/video-service && npm install --production
 
-# Start the app
-CMD ["npm", "start"]
+# Expose the necessary ports
+EXPOSE 3000 4000
+
+# Start Supervisor to manage services
+CMD ["supervisord", "-c", "/etc/supervisord.conf"]
