@@ -6,14 +6,14 @@ const cors = require('cors');
 const morgan = require('morgan'); // For request logging
 
 // Import routes
-const indexRouter = require('./api-service/routes/index');
-const authRouter = require('./api-service/routes/auth');
-const videoRouter = require('./api-service/routes/video');
-const pexelsRouter = require('./api-service/routes/pexels');
+const indexRouter = require('./routes/index');
+const authRouter = require('./routes/auth');
+const videoRouter = require('./routes/video');
+const pexelsRouter = require('./routes/pexels');
 
 // Import setup and middleware
-const { setupDynamoDBTable } = require('./api-service/models/dynamoDBClient');
-const { verifyToken } = require('./api-service/controllers/authController');
+const { setupDynamoDBTable } = require('./models/dynamoDBClient');
+const { verifyToken } = require('./controllers/authController');
 
 // Initialize Express app
 const app = express();
